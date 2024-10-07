@@ -29,7 +29,7 @@ pressures_bar_local =[]
 temperatures_local =[]
 
 with open("./LOKAL.csv", "r") as LOKAL:
-    file = csv.reader(LOKAL)
+    file = csv.reader(LOKAL, delimiter=';')
     next(file)                                      #Hopper over første linje; da denne har "feil" input 
     for row in file:
         Del = [str(elem.strip()) for elem in row]               
@@ -69,7 +69,8 @@ with open("./LOKAL.csv", "r") as LOKAL:
 
 
 with open("./SOLA.csv", "r") as SOLA:
-    file = csv.reader(SOLA)
+    file = csv.reader(SOLA, delimiter=';')
+    next(file)
     for row in file:
         Del = [str(elem.strip()) for elem in row]            #Strip fjerner mellomrom etc., split lager elementer ved ;
         if len(Del) >= 5:                      
@@ -120,6 +121,9 @@ else:
     temperaturfall_values = []
 #plotter inn temperatur fra begge filene
 
+#print(temperatures_sola[1])
+#print(times_sola[1])
+#print(pressures_sola[1])
 plt.figure(figsize=(10, 5))
 plt.subplot(2, 1, 1)
 plt.plot(times_local_filtered, temperatures_local_filtered, label="Lokal værstasjon", color="blue")
