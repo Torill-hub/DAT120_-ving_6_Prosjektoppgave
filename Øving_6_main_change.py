@@ -17,7 +17,7 @@ def moving_avg(times, temperatures, n):#reduserer støy ved å beregne gjennomsn
 
     return valid_times, avg
 
-            
+
 #lister for ulike målinger
 times_sola = []
 temperatures_sola = []
@@ -121,15 +121,17 @@ else:
     temperaturfall_values = []
 #plotter inn temperatur fra begge filene
 
-#print(temperatures_sola[1])
-#print(times_sola[1])
+#print(times_sola[40])
+#print(times_local[1])
 #print(pressures_sola[1])
 plt.figure(figsize=(10, 5))
 plt.subplot(2, 1, 1)
-plt.plot(times_local_filtered, temperatures_local_filtered, label="Lokal værstasjon", color="blue")
+plt.plot(times_local_filtered, temperatures_local_filtered, label="Lokal værstasjon", color='blue')
 plt.plot(times_sola_datetime, temperatures_sola, label="Sola værstasjon", color="green")
-plt.plot(valid_times, avg, label="Gjennomsnitt (n=30)", color="orange")
+plt.plot(times_local_datetime, temperatures_local, label="Lokal værstasjon ufiltrert", color='red')
+plt.plot(valid_times, avg, label="Gjennomsnitt (n=30)", color="blue")
 plt.plot(temperaturfall_times, temperaturfall_values, label="Temperaturmålinger far Maksimal til Minimal")
+
 plt.xlabel("Tid")
 plt.ylabel("Temperatur (°C)")
 plt.title("Temperatur fra begge værstasjoner")
