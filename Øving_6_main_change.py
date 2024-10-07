@@ -126,7 +126,7 @@ plt.subplot(2, 1, 1)
 #plt.plot(times_local_filtered, temperatures_local_filtered, label="Lokal værstasjon", color='blue') #denne overlapper med gjennomsnittet
 plt.plot(times_sola_datetime, temperatures_sola, label="Sola værstasjon", color="green")
 plt.plot(times_local_datetime, temperatures_local, label="Lokal værstasjon ufiltrert", color='red')
-plt.plot(valid_times, avg, label="Gjennomsnitt (n=30)", color="blue")
+plt.plot(valid_times, avg, label="Lokal værstasjon filtrert (n=30)", color="blue")
 plt.plot(temperaturfall_times, temperaturfall_values, label="Temperaturmålinger far Maksimal til Minimal")
 
 plt.xlabel("Tid")
