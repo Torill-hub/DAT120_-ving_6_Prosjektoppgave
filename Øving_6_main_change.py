@@ -121,9 +121,6 @@ else:
     temperaturfall_values = []
 #plotter inn temperatur fra begge filene
 
-#print(times_sola[40])
-#print(times_local[1])
-#print(pressures_sola[1])
 plt.figure(figsize=(10, 5))
 plt.subplot(2, 1, 1)
 plt.plot(times_local_filtered, temperatures_local_filtered, label="Lokal værstasjon", color='blue')
@@ -137,7 +134,6 @@ plt.ylabel("Temperatur (°C)")
 plt.title("Temperatur fra begge værstasjoner")
 plt.legend()
 
-
 plt.subplot(2, 1, 2)
 plt.title("Trykk fra begge værstasjoner")
 plt.plot(times_local_datetime, pressures_abs_local, label = "Absoluttrykk Lokal stasjon") #Fungerer alene
@@ -146,9 +142,6 @@ plt.plot(times_sola_datetime, pressures_sola, label = "Barometrisk trykk Sola v�
 plt.xlabel("Tid")
 plt.ylabel("Trykk Pha")
 plt.legend()
-
-#plt.xlim([min(times_local_datetime + times_sola_datetime), max(times_local_datetime + times_sola_datetime)])  # Sett grensene for x-aksenO
-
 
 plt.xticks(rotation=45)
 plt.tight_layout()
