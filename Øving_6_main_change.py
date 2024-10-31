@@ -105,6 +105,14 @@ end_time = datetime(2021, 6, 12, 3, 5)
 temperatures_local_filtered = []
 times_local_filtered = []
 
+#oppgave c: plott differansen mellom absolutt og barometrisk trykk i Lokal.csv
+pressure_diff_local = list()
+for i in range(len(pressures_bar_local)):
+    pressure_diff = pressures_abs_local[i*6] - pressures_bar_local[i]
+    #print(pressure_diff)
+    pressure_diff_local.append(pressure_diff)
+pr_diff_time, pr_diff_value = moving_avg(times_bar_local_datetime, pressure_diff_local, 10)
+
 for time, temperature in zip(times_local_datetime, temperatures_local):
     if start_time <= time <= end_time:
         times_local_filtered.append(time)
@@ -122,7 +130,7 @@ else:
 #plotter inn temperatur fra begge filene
 
 plt.figure(figsize=(10, 5))
-plt.subplot(2, 1, 1)
+plt.subplot(3, 1, 1)
 #plt.plot(times_local_filtered, temperatures_local_filtered, label="Lokal værstasjon", color='blue') #denne overlapper med gjennomsnittet
 plt.plot(times_sola_datetime, temperatures_sola, label="Sola værstasjon", color="green")
 plt.plot(times_local_datetime, temperatures_local, label="Lokal værstasjon ufiltrert", color='red')
@@ -134,7 +142,7 @@ plt.ylabel("Temperatur (°C)")
 plt.title("Temperatur fra begge værstasjoner")
 plt.legend()
 
-plt.subplot(2, 1, 2)
+plt.subplot(3, 1, 2)
 plt.title("Trykk fra begge værstasjoner")
 plt.plot(times_local_datetime, pressures_abs_local, label = "Absoluttrykk Lokal stasjon") #Fungerer alene
 plt.plot(times_bar_local_datetime, pressures_bar_local, label = "Barometrisk trykk lokal stasjon") #Fungerer alene
@@ -142,6 +150,10 @@ plt.plot(times_sola_datetime, pressures_sola, label = "Barometrisk trykk Sola v�
 plt.xlabel("Tid")
 plt.ylabel("Trykk Pha")
 plt.legend()
+
+plt.subplot(3, 1, 3)
+plt.title("Differanse mellom absolutt og barometrisk trykk")
+plt.plot(pr_diff_time, pr_diff_value, label = "Differanse mellom absolutt og barometrisk trykk")
 
 plt.xticks(rotation=45)
 plt.tight_layout()
